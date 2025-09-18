@@ -14,7 +14,7 @@ export async function answerQuery(query, onToken = null) {
   const context = results.map((r, i) => `(${i + 1}) ${r.text}`).join("\n\n");
   
   // 3. Build prompt
-  const prompt = `Answer the question using the following passages:\n\n${context}\n\nQuestion: ${query}\nAnswer: The answer should not contain any references like "the provided passage" and if you don't know the answer, just say "Sorry! Currently I don't have the information about that.".`;
+  const prompt = `Answer the question using the following passages:\n\n${context}\n\nQuestion: ${query}\nAnswer: The answer should not contain any references like "the provided passage" and the answer should be well elaborated. if you don't know the answer, just say "Sorry! Currently I don't have the information about that.".`;
   
   // 4A. Streaming mode
   if (onToken) {

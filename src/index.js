@@ -3,10 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 import dotenv from "dotenv";
 import { answerQuery } from "./services/rag.js";
 import { createRedisClient } from "./utils/redis.js";
+import cors from "cors";
+
 
 dotenv.config();
 
 const app = express();
+app.use(cors())
 app.use(express.json());
 
 const redis = await createRedisClient(
