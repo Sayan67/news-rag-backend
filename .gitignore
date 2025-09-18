@@ -7,3 +7,7 @@ pyvenv.cfg
 /share
 .env
 /ingest/__pycache__
+
+/src/node_modules
+/src/.env
+/src/.DS_Store
