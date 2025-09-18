@@ -20,12 +20,12 @@ qdrant_client = QdrantClient(
 
 docs=[]
 
-with open("ingest/articles.json","r") as f:
+with open("articles.json","r") as f:
     docs = json.load(f)
-docs = docs[:50]  # limit for demo
+docs = docs[:50] 
 qdrant_client.recreate_collection(
     collection_name=COLLECTION_NAME,
-    vectors_config=VectorParams(size=1024, distance=Distance.COSINE)  # Jina base = 768 dim
+    vectors_config=VectorParams(size=1024, distance=Distance.COSINE) 
 )
 
 BATCH = 32
@@ -43,12 +43,12 @@ def insert_articles(docs):
             print(f"Article {idx}, chunk {i}, vector length: {len(vec)}")
 
             point = PointStruct(
-                id=idx * 10 + i,  # unique id per chunk
-                vector=vec,       # ✅ one embedding per chunk
+                id=idx * 10 + i,  # unique id
+                vector=vec,       
                 payload={
                     "title": d["title"],
                     "url": d["url"],
-                    "text": chunk,   # store the chunk, not full article
+                    "text": chunk,  
                 }
             )
             points.append(point)
